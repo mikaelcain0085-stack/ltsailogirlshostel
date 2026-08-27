@@ -76,4 +76,24 @@ app.use((error, req, res, next) => {
 });
 
 const port = process.env.PORT || 10000;
+app.get("/api/imagekit/file/:fileId", async (req, res) => {
+  try {
+    const response = await fetch(
+      `https://api.imagekit.io/v1/files/${encodeURIComponent(req.params.fileId)}`,
+      {
+        headers: {
+          Accept: "application/json",
+          Authorization: imageKitAuthHeader(),
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    return res.status(response.status).json(data);
+  } catch (error) {
+    console.error("File check error:", error);
+    return res.status(500).json({ error: error.message });
+  }
+});
 app.listen(port, () => console.log(`LT Sailo ImageKit API running on port ${port}`));
