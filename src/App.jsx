@@ -483,7 +483,7 @@ function App() {
                     <div className="glass-footer">
 
                       <span>
-                        PHN NuM : 7640997973
+                        PHN Num : 7640997973
                       </span>
 
                       <ArrowRight size={18} />
@@ -1532,7 +1532,7 @@ function App() {
                         <p>
                           {selectedPhoto
                             ? selectedPhoto.name
-                            : "I thlalak upload te Admin in  a approve hunah View Gallery atangin i en thei ang."}
+                            : "I thlalak upload te Admin in  a approve hunah Visit Gallery atangin i en thei ang."}
                         </p>
 
                         <span className="upload-browse">
