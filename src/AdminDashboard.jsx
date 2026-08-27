@@ -16,6 +16,8 @@ function AdminDashboard() {
 
   const [activeTab, setActiveTab] = useState("dashboard");
   const [loading, setLoading] = useState(true);
+  const [selectedApplication, setSelectedApplication] = useState(null);
+  const [selectedEnquiry, setSelectedEnquiry] = useState(null);
 
   /* =========================
      FETCH ADMIN DATA
@@ -95,6 +97,10 @@ function AdminDashboard() {
           (enquiry) => enquiry.id !== id
         )
       );
+
+      if (selectedEnquiry?.id === id) {
+        setSelectedEnquiry(null);
+      }
     } catch (error) {
       console.error(
         "Error deleting enquiry:",
@@ -127,6 +133,10 @@ function AdminDashboard() {
             application.id !== id
         )
       );
+
+      if (selectedApplication?.id === id) {
+        setSelectedApplication(null);
+      }
     } catch (error) {
       console.error(
         "Error deleting application:",
@@ -448,16 +458,40 @@ function AdminDashboard() {
                         </td>
 
                         <td>
-                          <button
-                            className="admin-delete-button"
-                            onClick={() =>
-                              handleDeleteEnquiry(
-                                enquiry.id
-                              )
-                            }
+                          <div
+                            style={{
+                              display: "flex",
+                              gap: "8px",
+                              flexWrap: "wrap",
+                            }}
                           >
-                            Delete
-                          </button>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setSelectedEnquiry(enquiry)
+                              }
+                              style={{
+                                border: "none",
+                                borderRadius: "8px",
+                                padding: "8px 12px",
+                                cursor: "pointer",
+                                fontWeight: "600",
+                              }}
+                            >
+                              View Details
+                            </button>
+
+                            <button
+                              className="admin-delete-button"
+                              onClick={() =>
+                                handleDeleteEnquiry(
+                                  enquiry.id
+                                )
+                              }
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </td>
 
                       </tr>
@@ -527,16 +561,40 @@ function AdminDashboard() {
                         </td>
 
                         <td>
-                          <button
-                            className="admin-delete-button"
-                            onClick={() =>
-                              handleDeleteApplication(
-                                application.id
-                              )
-                            }
+                          <div
+                            style={{
+                              display: "flex",
+                              gap: "8px",
+                              flexWrap: "wrap",
+                            }}
                           >
-                            Delete
-                          </button>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setSelectedApplication(application)
+                              }
+                              style={{
+                                border: "none",
+                                borderRadius: "8px",
+                                padding: "8px 12px",
+                                cursor: "pointer",
+                                fontWeight: "600",
+                              }}
+                            >
+                              View Details
+                            </button>
+
+                            <button
+                              className="admin-delete-button"
+                              onClick={() =>
+                                handleDeleteApplication(
+                                  application.id
+                                )
+                              }
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </td>
 
                       </tr>
@@ -637,6 +695,214 @@ function AdminDashboard() {
         )}
 
       </main>
+
+      {selectedEnquiry && (
+        <div
+          onClick={() => setSelectedEnquiry(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            background: "rgba(0, 0, 0, 0.65)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "100%",
+              maxWidth: "700px",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              background: "#ffffff",
+              color: "#222222",
+              borderRadius: "16px",
+              padding: "28px",
+              boxShadow: "0 20px 60px rgba(0, 0, 0, 0.35)",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                gap: "16px",
+                marginBottom: "24px",
+              }}
+            >
+              <div>
+                <h2 style={{ margin: 0 }}>
+                  Enquiry Details
+                </h2>
+
+                <p
+                  style={{
+                    margin: "6px 0 0",
+                    color: "#666666",
+                  }}
+                >
+                  {selectedEnquiry.fullName || "Enquirer"}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setSelectedEnquiry(null)}
+                style={{
+                  border: "none",
+                  background: "#eeeeee",
+                  borderRadius: "8px",
+                  width: "38px",
+                  height: "38px",
+                  cursor: "pointer",
+                  fontSize: "20px",
+                }}
+                aria-label="Close enquiry details"
+              >
+                ×
+              </button>
+            </div>
+
+            <section>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns:
+                    "repeat(auto-fit, minmax(220px, 1fr))",
+                  gap: "18px",
+                }}
+              >
+                <div>
+                  <strong>Full Name:</strong>
+                  <br />
+                  {selectedEnquiry.fullName || "-"}
+                </div>
+
+                <div>
+                  <strong>Phone:</strong>
+                  <br />
+                  {selectedEnquiry.phone || "-"}
+                </div>
+
+                <div>
+                  <strong>Email:</strong>
+                  <br />
+                  {selectedEnquiry.email || "-"}
+                </div>
+
+                <div
+                  style={{
+                    gridColumn: "1 / -1",
+                  }}
+                >
+                  <strong>Message:</strong>
+                  <br />
+                  <p
+                    style={{
+                      marginTop: "8px",
+                      lineHeight: 1.7,
+                      whiteSpace: "pre-wrap",
+                    }}
+                  >
+                    {selectedEnquiry.message || "-"}
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      )}
+
+      {selectedApplication && (
+        <div
+          onClick={() => setSelectedApplication(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            background: "rgba(0, 0, 0, 0.65)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "100%",
+              maxWidth: "760px",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              background: "#ffffff",
+              color: "#222222",
+              borderRadius: "16px",
+              padding: "28px",
+              boxShadow: "0 20px 60px rgba(0, 0, 0, 0.35)",
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px", marginBottom: "24px" }}>
+              <div>
+                <h2 style={{ margin: 0 }}>Application Details</h2>
+                <p style={{ margin: "6px 0 0", color: "#666666" }}>
+                  {selectedApplication.fullName || "Applicant"}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setSelectedApplication(null)}
+                style={{
+                  border: "none",
+                  background: "#eeeeee",
+                  borderRadius: "8px",
+                  width: "38px",
+                  height: "38px",
+                  cursor: "pointer",
+                  fontSize: "20px",
+                }}
+                aria-label="Close application details"
+              >
+                ×
+              </button>
+            </div>
+
+            <section style={{ marginBottom: "24px" }}>
+              <h3>Personal Details</h3>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "14px" }}>
+                <div><strong>Full Name:</strong><br />{selectedApplication.fullName || "-"}</div>
+                <div><strong>Date of Birth:</strong><br />{selectedApplication.dateOfBirth || "-"}</div>
+                <div><strong>Phone:</strong><br />{selectedApplication.phone || "-"}</div>
+                <div><strong>Email:</strong><br />{selectedApplication.email || "-"}</div>
+                <div style={{ gridColumn: "1 / -1" }}><strong>Home Address:</strong><br />{selectedApplication.homeAddress || "-"}</div>
+              </div>
+            </section>
+
+            <section style={{ marginBottom: "24px" }}>
+              <h3>Academic / Work Information</h3>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "14px" }}>
+                <div><strong>Institution:</strong><br />{selectedApplication.institution || "-"}</div>
+                <div><strong>Course / Profession:</strong><br />{selectedApplication.courseProfession || "-"}</div>
+                <div><strong>Year / Semester:</strong><br />{selectedApplication.yearSemester || "-"}</div>
+                <div><strong>Expected Joining Date:</strong><br />{selectedApplication.joiningDate || "-"}</div>
+              </div>
+            </section>
+
+            <section>
+              <h3>Guardian & Emergency Contact</h3>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "14px" }}>
+                <div><strong>Guardian Name:</strong><br />{selectedApplication.guardianName || "-"}</div>
+                <div><strong>Guardian Phone:</strong><br />{selectedApplication.guardianPhone || "-"}</div>
+                <div><strong>Emergency Contact:</strong><br />{selectedApplication.emergencyContact || "-"}</div>
+                <div><strong>Application Status:</strong><br />{selectedApplication.status || "new"}</div>
+              </div>
+            </section>
+          </div>
+        </div>
+      )}
 
     </div>
   );
