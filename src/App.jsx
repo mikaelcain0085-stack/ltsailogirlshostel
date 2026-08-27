@@ -269,18 +269,9 @@ function App() {
 
                 <div className="nav-container">
 
-                  <a
-                    href="#home"
-                    className="logo"
-                  >
-                    <span className="logo-mark">
-                      
-                    </span>
-
-                   <div className="logo-text">
-                   
-                   </div>
-                   </a>
+                  <a href="#home" className="carved-brand">
+                      LT Sailo Girls Hostel
+                  </a>
 
                   <div
                     className={`nav-links ${
