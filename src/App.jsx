@@ -532,9 +532,9 @@ function App() {
                   </h2>
 
                   <p>
-                    A hnuaia Enquiry Form khu Fill up la,
+                     Enquiry Form hi Fill up la,
                     i duh anga zirin seat kan lo
-                    ngaihtuahsak dawn che ania.
+                    ngaihtuah sak dawn che ania.
                   </p>
 
                   <div className="enquiry-details">
