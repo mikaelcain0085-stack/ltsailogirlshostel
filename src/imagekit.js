@@ -1,7 +1,4 @@
-const API_BASE_URL = (
-  import.meta.env.VITE_IMAGEKIT_API_BASE_URL ||
-  "http://localhost:10000"
-).replace(/\/$/, "");
+const API_BASE_URL = "https://lt-sailo-imagekit-api.onrender.com";
 
 export async function uploadHostellerPhoto(file) {
   const formData = new FormData();
@@ -17,24 +14,10 @@ export async function uploadHostellerPhoto(file) {
     }
   );
 
-  const contentType = response.headers.get("content-type") || "";
-
-  let data = {};
-
-  if (contentType.includes("application/json")) {
-    data = await response.json();
-  } else {
-    const text = await response.text();
-
-    throw new Error(
-      text || `Upload failed with status ${response.status}`
-    );
-  }
+  const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(
-      data.error || "Image upload failed."
-    );
+    throw new Error(data.error || "Image upload failed.");
   }
 
   return data;
@@ -48,25 +31,10 @@ export async function deleteHostellerPhoto(fileId) {
     }
   );
 
-  const contentType =
-    response.headers.get("content-type") || "";
-
-  let data = {};
-
-  if (contentType.includes("application/json")) {
-    data = await response.json();
-  } else {
-    const text = await response.text();
-
-    throw new Error(
-      text || `Delete failed with status ${response.status}`
-    );
-  }
+  const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(
-      data.error || "Image deletion failed."
-    );
+    throw new Error(data.error || "Image deletion failed.");
   }
 
   return data;

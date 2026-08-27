@@ -354,9 +354,9 @@ function App() {
                   </div>
 
                   <h1>
-                    A beautiful place
+                    Hostel hmun rem
                     <span>
-                      to belong.
+                      leh nuam.
                     </span>
                   </h1>
 
@@ -441,7 +441,7 @@ function App() {
                       <span className="live-dot"></span>
 
                       <span>
-                        LT SAILO RESIDENCE
+                        LT SAILO RESIDENCE,COLLEGE VENG,AIZAWL.
                       </span>
                     </div>
 
@@ -452,14 +452,14 @@ function App() {
                       </span>
 
                       <h2>
-                        Live.
+                        LT SAILO
                         <br />
 
-                        Laugh.
+                        GIRLS
                         <br />
 
                         <em>
-                          Belong.
+                          HOSTEL
                         </em>
                       </h2>
 
@@ -468,7 +468,7 @@ function App() {
                     <div className="glass-footer">
 
                       <span>
-                        EST. HOME
+                        PHN NUM : 7640997973
                       </span>
 
                       <ArrowRight size={18} />
@@ -509,19 +509,20 @@ function App() {
                   </div>
 
                   <h2>
-                    Looking for a place
+                    Hostel hmun rem tak
 
                     <span>
-                      to call home?
+                      I zawn chuan.
                     </span>
                   </h2>
 
                   <p>
-                    Tell us a little about yourself
-                    and what you're looking for.
-                    We'll help you explore your
-                    options at LT Sailo Girls Hostel.
+                    Enquiry form hi fill-up la,seat awm 
+                    dan leh i duh dan azir in kan
+                    lo buaipui dawn che ania.
+
                   </p>
+
 
                   <div className="enquiry-details">
 
@@ -839,7 +840,9 @@ function App() {
                     </div>
 
                     <h2>
-                      Ready to make
+                      Hostel seat
+                      application form.
+                      
 
                       <span>
                         LT Sailo
@@ -851,10 +854,9 @@ function App() {
                   </div>
 
                   <p>
-                    Take the next step and submit
-                    your hostel seat application.
-                    Share your details with us and
-                    we'll review your application.
+                    Hostel a awm duh tan application
+                    form hi fill-up ula,kan lo 
+                    buaipui dawn che ania.
                   </p>
 
                 </div>
@@ -870,13 +872,13 @@ function App() {
                       </span>
 
                       <h3>
-                        Your next
+                        Seat
 
                         <em>
-                          chapter
+                          application
                         </em>
 
-                        starts here.
+                        form.
                       </h3>
 
                       <p>
@@ -1358,10 +1360,10 @@ function App() {
                     </div>
 
                     <h2>
-                      Life looks better
+                      Photo
 
                       <span>
-                        together.
+                       Gallery.
                       </span>
                     </h2>
 
@@ -1389,14 +1391,14 @@ function App() {
                     <div className="memory-preview-content">
 
                       <span className="memory-label">
-                        LT SAILO ARCHIVE
+                        LT SAILO Girls Hostel ARCHIVE
                       </span>
 
                       <h3>
-                        A collection of
+                        Snap,Upload
 
                         <em>
-                          our moments.
+                          & View.
                         </em>
                       </h3>
 
@@ -1518,7 +1520,7 @@ function App() {
                         <p>
                           {selectedPhoto
                             ? selectedPhoto.name
-                            : "Choose a photo from your device to share with the LT Sailo community."}
+                            : "Thlalak upload la,Admin in a approve hunah View Gallery atangin i en dawn nia."}
                         </p>
 
                         <span className="upload-browse">
