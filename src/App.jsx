@@ -492,7 +492,7 @@ function App() {
                     <div className="glass-footer">
 
                       <span>
-                        EST. HOME
+                        PHN NuM : 7640997973
                       </span>
 
                       <ArrowRight size={18} />
@@ -541,10 +541,9 @@ function App() {
                   </h2>
 
                   <p>
-                    Tell us a little about yourself
-                    and what you're looking for.
-                    We'll help you explore your
-                    options at LT Sailo Girls Hostel.
+                    A hnuaia Enquiry Form khu Fill up la,
+                    i duh anga zirin seat kan lo
+                    ngaihtuahsak dawn che ania.
                   </p>
 
                   <div className="enquiry-details">
@@ -875,10 +874,10 @@ function App() {
                   </div>
 
                   <p>
-                    Take the next step and submit
-                    your hostel seat application.
-                    Share your details with us and
-                    we'll review your application.
+                    Hoostel seat ala awm anih chuan,
+                    a hnuaia application Form khu
+                    fill up la apply ve ang che.
+                    
                   </p>
 
                 </div>
@@ -1536,13 +1535,13 @@ function App() {
                         <h4>
                           {selectedPhoto
                             ? "Photo selected ✦"
-                            : "Drop your memory here"}
+                            : "Thlalak Upload rawh le"}
                         </h4>
 
                         <p>
                           {selectedPhoto
                             ? selectedPhoto.name
-                            : "Choose a photo from your device to share with the LT Sailo community."}
+                            : "I thlalak upload te Admin in  a approve hunah View Gallery atangin i en thei ang."}
                         </p>
 
                         <span className="upload-browse">
