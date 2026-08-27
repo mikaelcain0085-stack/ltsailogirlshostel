@@ -793,6 +793,24 @@ function AdminDashboard() {
                   {selectedEnquiry.email || "-"}
                 </div>
 
+                <div>
+                  <strong>College / Workplace:</strong>
+                  <br />
+                  {selectedEnquiry.collegeWorkplace || "-"}
+                </div>
+
+                <div>
+                  <strong>Preferred Room:</strong>
+                  <br />
+                  {selectedEnquiry.preferredRoom || "-"}
+                </div>
+
+                <div>
+                  <strong>Expected Joining Date:</strong>
+                  <br />
+                  {selectedEnquiry.joiningDate || "-"}
+                </div>
+
                 <div
                   style={{
                     gridColumn: "1 / -1",
