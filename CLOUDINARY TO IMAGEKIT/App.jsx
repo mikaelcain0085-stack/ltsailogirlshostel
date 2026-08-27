@@ -7,7 +7,6 @@ import { ArrowRight, Heart, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "./firebase";
-
 import { uploadHostellerPhoto } from "./imagekit";
 
 function App() {
@@ -173,50 +172,41 @@ function App() {
     setPhotoStatus("");
   };
 
- const handlePhotoUpload = async () => {
-  if (!selectedPhoto) {
-    setPhotoStatus("noPhoto");
-    return;
-  }
+  const handlePhotoUpload = async () => {
+    if (!selectedPhoto) {
+      setPhotoStatus("noPhoto");
+      return;
+    }
 
-  setIsUploadingPhoto(true);
-  setPhotoStatus("");
+    setIsUploadingPhoto(true);
+    setPhotoStatus("");
 
-  try {
-    const uploadedImage = await uploadHostellerPhoto(
-      selectedPhoto
-    );
+    try {
+      const uploadedPhoto = await uploadHostellerPhoto(selectedPhoto);
 
-    await addDoc(
-      collection(db, "hostellerPhotos"),
-      {
-        imageUrl: uploadedImage.url,
-        fileId: uploadedImage.fileId,
+      await addDoc(collection(db, "hostellerPhotos"), {
+        imageUrl: uploadedPhoto.url,
+        fileId: uploadedPhoto.fileId,
+        name: uploadedPhoto.name || selectedPhoto.name,
         status: "pending",
         createdAt: serverTimestamp(),
+      });
+
+      setSelectedPhoto(null);
+      setPhotoStatus("success");
+
+      const photoInput = document.getElementById("photo-upload");
+      if (photoInput) {
+        photoInput.value = "";
       }
-    );
-
-    setSelectedPhoto(null);
-    setPhotoStatus("success");
-
-    const photoInput =
-      document.getElementById("photo-upload");
-
-    if (photoInput) {
-      photoInput.value = "";
+    } catch (error) {
+      console.error("Photo upload error:", error);
+      setPhotoStatus("error");
+    } finally {
+      setIsUploadingPhoto(false);
     }
-  } catch (error) {
-    console.error(
-      "Error uploading photo:",
-      error
-    );
+  };
 
-    setPhotoStatus("error");
-  } finally {
-    setIsUploadingPhoto(false);
-  }
-};
   return (
     <BrowserRouter>
       <Routes>

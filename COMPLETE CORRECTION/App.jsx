@@ -7,6 +7,7 @@ import { ArrowRight, Heart, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "./firebase";
+import { uploadHostellerPhoto } from "./imagekit";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -172,71 +173,42 @@ function App() {
   };
 
   const handlePhotoUpload = async () => {
-    if (!selectedPhoto) {
-      setPhotoStatus("noPhoto");
-      return;
-    }
+  if (!selectedPhoto) {
+    setPhotoStatus("noPhoto");
+    return;
+  }
 
-    setIsUploadingPhoto(true);
-    setPhotoStatus("");
+  setIsUploadingPhoto(true);
+  setPhotoStatus("");
 
-    try {
-      const formData = new FormData();
+  try {
+    const uploadedImage = await uploadHostellerPhoto(selectedPhoto);
 
-      formData.append("file", selectedPhoto);
-
-      formData.append(
-        "upload_preset",
-        "lt_sailo_hostel_uploads"
-      );
-
-      const response = await fetch(
-        "https://api.cloudinary.com/v1_1/cnth8guf/image/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data.error?.message || "Photo upload failed"
-        );
+    await addDoc(
+      collection(db, "hostellerPhotos"),
+      {
+        imageUrl: uploadedImage.url,
+        fileId: uploadedImage.fileId,
+        status: "pending",
+        createdAt: serverTimestamp(),
       }
+    );
 
-      await addDoc(
-        collection(db, "hostellerPhotos"),
-        {
-          imageUrl: data.secure_url,
-          publicId: data.public_id,
-          status: "pending",
-          createdAt: serverTimestamp(),
-        }
-      );
+    setSelectedPhoto(null);
+    setPhotoStatus("success");
 
-      setSelectedPhoto(null);
-      setPhotoStatus("success");
+    const photoInput = document.getElementById("photo-upload");
 
-      const photoInput =
-        document.getElementById("photo-upload");
-
-      if (photoInput) {
-        photoInput.value = "";
-      }
-    } catch (error) {
-      console.error(
-        "Photo upload error:",
-        error
-      );
-
-      setPhotoStatus("error");
-    } finally {
-      setIsUploadingPhoto(false);
+    if (photoInput) {
+      photoInput.value = "";
     }
-  };
-
+  } catch (error) {
+    console.error("Error uploading photo:", error);
+    setPhotoStatus("error");
+  } finally {
+    setIsUploadingPhoto(false);
+  }
+};
   return (
     <BrowserRouter>
       <Routes>
