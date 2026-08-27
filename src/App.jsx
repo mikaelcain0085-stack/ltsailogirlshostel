@@ -865,7 +865,7 @@ function App() {
                   </div>
 
                   <p>
-                    Hoostel seat ala awm anih chuan,
+                    Hostel seat ala awm anih chuan,
                     a hnuaia application Form khu
                     fill up la apply ve ang che.
                     
