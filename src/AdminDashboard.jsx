@@ -753,15 +753,13 @@ const handleUpdateSeats = async () => {
                         )}
 
                         <button
-                          className="admin-delete-button"
-                          onClick={() =>
-                            handleDeletePhoto(
-                              photo.id
-                            )
-                          }
-                        >
-                          Delete
-                        </button>
+  className="admin-delete-button"
+  onClick={() =>
+    handleDeletePhoto(photo)
+  }
+>
+  Delete
+</button>
 
                       </div>
 
