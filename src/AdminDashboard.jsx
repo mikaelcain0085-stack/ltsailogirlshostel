@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import {
   collection,
   getDocs,
   deleteDoc,
   doc,
   updateDoc,
+  getDoc,
+  setDoc,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import { deleteHostellerPhoto } from "./imagekit";
+import { Link } from "react-router-dom";
 
 function AdminDashboard() {
   const [enquiries, setEnquiries] = useState([]);
@@ -17,8 +19,54 @@ function AdminDashboard() {
 
   const [activeTab, setActiveTab] = useState("dashboard");
   const [loading, setLoading] = useState(true);
+  const [availableSeats, setAvailableSeats] = useState("");
+  const [seatUpdateStatus, setSeatUpdateStatus] = useState("");
+  const [isUpdatingSeats, setIsUpdatingSeats] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState(null);
   const [selectedEnquiry, setSelectedEnquiry] = useState(null);
+  const fetchSeatAvailability = async () => {
+  try {
+    const seatDoc = await getDoc(
+      doc(db, "settings", "seatAvailability")
+    );
+
+    if (seatDoc.exists()) {
+      setAvailableSeats(
+        seatDoc.data().availableSeats ?? ""
+      );
+    }
+  } catch (error) {
+    console.error(
+      "Error fetching seat availability:",
+      error
+    );
+  }
+};
+const handleUpdateSeats = async () => {
+  if (availableSeats === "") {
+    setSeatUpdateStatus("Please enter the number of available seats.");
+    return;
+  }
+
+  try {
+    setIsUpdatingSeats(true);
+    setSeatUpdateStatus("");
+
+    await setDoc(
+      doc(db, "settings", "seatAvailability"),
+      {
+        availableSeats: Number(availableSeats),
+      }
+    );
+
+    setSeatUpdateStatus("Seats updated successfully!");
+  } catch (error) {
+    console.error("Error updating seats:", error);
+    setSeatUpdateStatus("Failed to update seats.");
+  } finally {
+    setIsUpdatingSeats(false);
+  }
+};
 
   /* =========================
      FETCH ADMIN DATA
@@ -70,9 +118,11 @@ function AdminDashboard() {
           error
         );
       } finally {
+        await fetchSeatAvailability();
         setLoading(false);
       }
     };
+    
 
     fetchAdminData();
   }, []);
@@ -399,6 +449,41 @@ function AdminDashboard() {
                 </div>
               </div>
 
+            </div>
+                        <div className="seat-management-card">
+              <div>
+                <h2>🛏️ Seat Availability</h2>
+                <p>
+                  Update the number of seats currently available.
+                </p>
+              </div>
+
+              <div className="seat-management-controls">
+                <input
+                  type="number"
+                  min="0"
+                  value={availableSeats}
+                  onChange={(e) =>
+                    setAvailableSeats(e.target.value)
+                  }
+                  placeholder="Available seats"
+                />
+
+                <button
+                  onClick={handleUpdateSeats}
+                  disabled={isUpdatingSeats}
+                >
+                  {isUpdatingSeats
+                    ? "Updating..."
+                    : "Update Seats"}
+                </button>
+              </div>
+
+              {seatUpdateStatus && (
+                <p className="seat-update-status">
+                  {seatUpdateStatus}
+                </p>
+              )}
             </div>
           </>
         )}

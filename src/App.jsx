@@ -4,14 +4,42 @@ import AdminLogin from "./AdminLogin";
 import { BrowserRouter, Routes, Route,Link } from "react-router-dom";
 import Gallery from "./Gallery";
 import { ArrowRight, Heart, Menu, X } from "lucide-react";
-import { useState } from "react";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { useEffect, useState } from "react";
+
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  onSnapshot,
+} from "firebase/firestore";
+
 import { db } from "./firebase";
 
 import { uploadHostellerPhoto } from "./imagekit";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [availableSeats, setAvailableSeats] = useState(0);
+  
+  useEffect(() => {
+  const unsubscribe = onSnapshot(
+    doc(db, "settings", "seatAvailability"),
+    (snapshot) => {
+      if (snapshot.exists()) {
+        setAvailableSeats(snapshot.data().availableSeats ?? 0);
+      } else {
+        setAvailableSeats(0);
+      }
+    },
+    (error) => {
+      console.error("Error loading seat availability:", error);
+      setAvailableSeats(0);
+    }
+  );
+
+  return () => unsubscribe();
+}, []);
 
   /* =========================
      ENQUIRY FORM
@@ -247,14 +275,14 @@ function App() {
                     className="logo"
                   >
                     <span className="logo-mark">
-                      LT
+                    
                     </span>
 
                     <div className="logo-text">
-                      <strong>Sailo</strong>
+                      <strong></strong>
 
                       <span>
-                        Girls Hostel
+                        
                       </span>
                     </div>
                   </a>
@@ -860,6 +888,19 @@ function App() {
                   </p>
 
                 </div>
+                 <div className="seat-availability-card">
+
+  <span className="seat-mini-label">
+    SEATS AVAILABLE
+  </span>
+
+  <div className="seat-number">
+    {availableSeats === null
+      ? "..."
+      : availableSeats}
+  </div>
+
+</div>
 
                 <div className="application-layout">
 
@@ -897,6 +938,7 @@ function App() {
                             Personal details
                           </p>
                         </div>
+                        
 
                         <div className="application-step">
                           <span>02</span>
@@ -929,6 +971,7 @@ function App() {
                     </div>
 
                   </div>
+                 
 
                   <div className="application-form-card">
 

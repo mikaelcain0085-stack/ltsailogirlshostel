@@ -713,6 +713,14 @@ a {
 ========================= */
 
 @media (max-width: 900px) {
+  .seat-availability-card {
+  position: relative;
+  top: auto;
+
+  min-height: 140px;
+
+  width: min(280px, 100%);
+}
   .navbar {
     padding: 1rem 1.2rem;
   }
@@ -1263,12 +1271,16 @@ a {
 }
 
 .application-layout {
+  width: 100%;
+
   display: grid;
-  grid-template-columns: 0.7fr 1.3fr;
+
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+
   gap: 2rem;
+
   align-items: start;
 }
-
 /* LEFT INFORMATION CARD */
 
 .application-side {
@@ -1394,7 +1406,75 @@ a {
 
   color: rgba(255, 255, 255, 0.55);
 }
+/* =========================
+   SEAT AVAILABILITY CARD
+========================= */
 
+.seat-availability-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.application-layout {
+  margin-top: 1rem;
+}
+
+.seat-availability-card {
+  position: relative;
+
+  width: min(500px, 100%);
+  min-height: 0;
+
+  padding: 1rem 2rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 1.7rem;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.13),
+      rgba(255, 255, 255, 0.03)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.16);
+}
+
+.seat-mini-label {
+  font-family: "DM Mono", monospace;
+
+  font-size: 0.7rem;
+  font-weight: 500;
+
+  letter-spacing: 0.14em;
+
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.seat-number {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  font-weight: 600;
+
+  line-height: 1;
+
+  color: #f1b8da;
+
+  text-shadow:
+    0 0 35px
+    rgba(241, 184, 218, 0.22);
+}
 /* APPLICATION FORM */
 
 .application-form-card {
@@ -1572,8 +1652,11 @@ a {
   }
 
   .application-layout {
-    grid-template-columns: 1fr;
-  }
+  display: grid;
+  grid-template-columns: 0.7fr 0.28fr 1.3fr;
+  gap: 1.4rem;
+  align-items: start;
+}
 
   .application-side {
     position: relative;
