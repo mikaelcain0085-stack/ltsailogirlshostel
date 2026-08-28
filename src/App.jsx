@@ -537,10 +537,10 @@ function App() {
                   </div>
 
                   <h2>
-                    Hostel hmun rem tak
+                    Hostel chungchang zawh
 
                     <span>
-                      i zawn chuan.
+                     duh i neih chuan.
                     </span>
                   </h2>
 
