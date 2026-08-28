@@ -512,7 +512,7 @@ function App() {
                     Hostel hmun rem tak
 
                     <span>
-                      I zawn chuan.
+                      i zawn chuan.
                     </span>
                   </h2>
 
@@ -841,14 +841,14 @@ function App() {
 
                     <h2>
                       Hostel seat
-                      application form.
+                      
                       
 
                       <span>
-                        LT Sailo
+                        application 
                       </span>
 
-                      your home?
+                      form.
                     </h2>
 
                   </div>
@@ -1360,10 +1360,10 @@ function App() {
                     </div>
 
                     <h2>
-                      Photo
+                      Thlalak
 
                       <span>
-                       Gallery.
+                       dahthatna.
                       </span>
                     </h2>
 
