@@ -1653,8 +1653,8 @@ a {
 
   .application-layout {
   display: grid;
-  grid-template-columns: 0.7fr 0.28fr 1.3fr;
-  gap: 1.4rem;
+  grid-template-columns: 1fr;
+  gap: 2rem;
   align-items: start;
 }
 
