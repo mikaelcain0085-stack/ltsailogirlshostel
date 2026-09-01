@@ -3723,3 +3723,6 @@ body {
   position: relative;
   overflow: clip;
 }
+body {
+  color: #fff8fb;
+}
