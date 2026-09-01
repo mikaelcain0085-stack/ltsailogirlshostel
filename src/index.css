@@ -3703,3 +3703,48 @@ body {
   }
 
 }
+/* =========================
+   SINGLE PAGE SCROLL FIX
+========================= */
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#root {
+  overflow: visible;
+}
+/* =========================
+   FINAL SINGLE SCROLL FIX
+========================= */
+
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  overflow: visible !important;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
