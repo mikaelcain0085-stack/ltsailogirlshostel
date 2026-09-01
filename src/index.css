@@ -15,6 +15,7 @@ html {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -22,6 +23,7 @@ body {
   min-width: 320px;
   margin: 0;
   padding: 0;
+  overflow-x: clip;
 
   background:
     radial-gradient(circle at top left, #4d2949 0%, transparent 35%),
@@ -31,15 +33,6 @@ body {
 
 #root {
   width: 100%;
-}
-
-:root {
-  font-family: "Manrope", sans-serif;
-  color: #fff8fb;
-  background: #1b111b;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
 }
 
 /* =========================
@@ -85,6 +78,7 @@ a {
 .app {
   min-height: 100vh;
   position: relative;
+  overflow-x: clip;
 }
 /* =========================
    AMBIENT BACKGROUND
@@ -3727,5 +3721,5 @@ body {
 .app {
   min-height: 100vh;
   position: relative;
-  overflow: visible;
+  overflow: clip;
 }
