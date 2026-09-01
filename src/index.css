@@ -6,19 +6,27 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #root {
   width: 100%;
   max-width: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
+  overflow-y: visible;
 }
 
 img,
@@ -78,7 +86,7 @@ a {
 
 .app {
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
 }
 
