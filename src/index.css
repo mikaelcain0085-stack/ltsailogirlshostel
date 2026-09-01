@@ -86,10 +86,10 @@ a {
 
 .app {
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
   position: relative;
 }
-
 /* =========================
    AMBIENT BACKGROUND
 ========================= */
