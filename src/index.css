@@ -3723,50 +3723,35 @@ body {
 #root {
   overflow: visible;
 }
-/* =========================
-   FINAL SINGLE SCROLL FIX
-========================= */
-
-html,
-body {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-}
-
-#root {
-  width: 100%;
-  min-height: 100vh;
-  overflow: visible !important;
-}
-
-.app {
-  width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden !important;
-  overflow-y: visible !important;
-}
-/* ===== FINAL SCROLL FIX ===== */
+/* ===== PROPER MOBILE + SCROLL FIX ===== */
 
 html {
-  overflow-x: hidden;
-  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
-  overflow: visible !important;
+  padding: 0;
+  width: 100%;
+  min-width: 0;
+  overflow-x: clip;
 }
 
 #root {
-  overflow: visible !important;
+  width: 100%;
+  min-width: 0;
 }
 
 main.app,
 .app {
-  height: auto !important;
   min-height: 100vh;
-  overflow: visible !important;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+  overflow-y: visible;
+  position: relative;
 }
