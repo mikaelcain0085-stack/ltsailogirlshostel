@@ -1,41 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap");
+
 /* =========================
-   PREVENT MOBILE SIDE SCROLL
+   GLOBAL RESET
 ========================= */
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
 }
 
 body {
   width: 100%;
-  min-height: 100%;
+  min-width: 320px;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+
+  background:
+    radial-gradient(circle at top left, #4d2949 0%, transparent 35%),
+    radial-gradient(circle at 85% 20%, #51365b 0%, transparent 30%),
+    #1a111b;
 }
 
 #root {
   width: 100%;
-  max-width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: visible;
 }
-
-img,
-video,
-canvas,
-svg {
-  max-width: 100%;
-}
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap");
 
 :root {
   font-family: "Manrope", sans-serif;
@@ -46,22 +42,20 @@ svg {
   text-rendering: optimizeLegibility;
 }
 
-* {
-  box-sizing: border-box;
+/* =========================
+   MEDIA SAFETY
+========================= */
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  background:
-    radial-gradient(circle at top left, #4d2949 0%, transparent 35%),
-    radial-gradient(circle at 85% 20%, #51365b 0%, transparent 30%),
-    #1a111b;
-}
+/* =========================
+   TEXT & FORM RESET
+========================= */
 
 body,
 button,
@@ -84,10 +78,12 @@ a {
   text-decoration: none;
 }
 
+/* =========================
+   MAIN APP
+========================= */
+
 .app {
   min-height: 100vh;
-  overflow-x: clip;
-  overflow-y: visible;
   position: relative;
 }
 /* =========================
