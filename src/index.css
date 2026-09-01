@@ -1,3 +1,32 @@
+/* =========================
+   PREVENT MOBILE SIDE SCROLL
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap");
 
 :root {
@@ -3655,4 +3684,14 @@ body {
     width: min(100% - 28px, 1180px);
     flex-direction: column;
   }
+}
+@media (max-width: 900px) {
+
+  section,
+  .hero,
+  .container,
+  .application-layout {
+    max-width: 100%;
+  }
+
 }
