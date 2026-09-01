@@ -3748,3 +3748,25 @@ body {
   overflow-x: hidden !important;
   overflow-y: visible !important;
 }
+/* ===== FINAL SCROLL FIX ===== */
+
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  margin: 0;
+  overflow: visible !important;
+}
+
+#root {
+  overflow: visible !important;
+}
+
+main.app,
+.app {
+  height: auto !important;
+  min-height: 100vh;
+  overflow: visible !important;
+}
